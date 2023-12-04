@@ -16,24 +16,24 @@ import java.io.IOException;
  */
 public class Actividad_01_UD3_ED 
 {
-    private static byte[] buffer = new byte[1000];
-    private static String fileName = "fichero.dat";
-    private static FileInputStream inputStream = null;
-    private static BufferedInputStream inputBuffer = null;
+    private static byte[] intermedio = new byte[1000];
+    private static String nombredeArchivo = "fichero.dat";
+    private static FileInputStream inputFlujo = null;
+    private static BufferedInputStream inputIntermedio = null;
 
     public static void inicializateFiles() throws FileNotFoundException
     {
-        inputStream = new FileInputStream(fileName);
-        inputBuffer = new BufferedInputStream(inputStream);
+        inputFlujo = new FileInputStream(nombredeArchivo);
+        inputIntermedio = new BufferedInputStream(inputFlujo);
     }
     
     public static int showFileText() throws IOException
     {
         int total = 0;
         int nRead = 0;
-        while((nRead = inputStream.read(buffer)) != -1) 
+        while((nRead = inputFlujo.read(intermedio)) != -1) 
         {
-            System.out.println(new String(buffer));
+            System.out.println(new String(intermedio));
             total += nRead;
         }
         
@@ -61,10 +61,10 @@ public class Actividad_01_UD3_ED
         {
             try 
             {
-                if( inputBuffer != null && inputStream != null )
+                if( inputIntermedio != null && inputFlujo != null )
                 {
-                    inputStream.close();
-                    inputBuffer.close();
+                    inputFlujo.close();
+                    inputIntermedio.close();
                 }                
             } 
             catch (IOException ex) 
